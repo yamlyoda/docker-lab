@@ -1,0 +1,33 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 66B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/alpine:3.22
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 876B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/alpine:3.22@sha256:14358309a308569c32bdc37e2e0e9694be33a9d99e68afb0f5ff33cc1f695dce
+#4 resolve docker.io/library/alpine:3.22@sha256:14358309a308569c32bdc37e2e0e9694be33a9d99e68afb0f5ff33cc1f695dce 0.0s done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 325B 0.1s done
+#5 DONE 0.1s
+
+#6 [2/2] COPY . /ctx
+#6 DONE 0.0s
+
+#7 exporting to image
+#7 exporting layers 0.1s done
+#7 exporting manifest sha256:501a47e04c0427ea2c6d238b6c8a6df3e8285d1f32aa34c81ea676ab81cbffea done
+#7 exporting config sha256:dd4163137ad4d0ad65393ba05b253a859a2d37d930a35ee6be8380a50613f3bd done
+#7 exporting attestation manifest sha256:2c79c85feed472f4cb75ccef709856d7d1ffe7055cdddbe55c550371f9d99679 done
+#7 exporting manifest list sha256:1565630681f9297f84c092c5f9a8a1bff4f90a5211f6cd0d415183c481986fbc done
+#7 naming to docker.io/library/tmp:probe-after done
+#7 unpacking to docker.io/library/tmp:probe-after done
+#7 DONE 0.1s

@@ -1,0 +1,273 @@
+2026-08-22T19:49:17+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-08-22T19:49:17+03:00	INFO	[secret] Secret scanning is enabled
+2026-08-22T19:49:17+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-08-22T19:49:17+03:00	INFO	[secret] Please see https://trivy.dev/docs/v0.74/guide/scanner/secret#recommendation for faster secret detection
+2026-08-22T19:49:18+03:00	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-08-22T19:49:18+03:00	INFO	Detected OS	family="debian" version="13.6"
+2026-08-22T19:49:18+03:00	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=78
+2026-08-22T19:49:18+03:00	INFO	Number of language-specific files	num=1
+2026-08-22T19:49:18+03:00	INFO	[python-pkg] Detecting vulnerabilities...
+2026-08-22T19:49:18+03:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┬─────────┐
+│                                      Target                                      │    Type    │ Vulnerabilities │ Secrets │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ launch-control:optimized (debian 13.6)                                           │   debian   │       51        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA   │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/click-8.4.2.dist-info/METADATA             │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/fastapi-0.141.1.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA              │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/idna-3.18.dist-info/METADATA               │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic-2.13.4.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pydantic_core-2.46.4.dist-info/METADATA    │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/python_dotenv-1.2.2.dist-info/METADATA     │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA            │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/starlette-1.3.1.dist-info/METADATA         │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADA- │ python-pkg │        0        │    -    │
+│ TA                                                                               │            │                 │         │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/typing_inspection-0.4.2.dist-info/METADATA │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvicorn-0.52.0.dist-info/METADATA          │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA           │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA        │ python-pkg │        0        │    -    │
+├──────────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┼─────────┤
+│ opt/venv/lib/python3.12/site-packages/websockets-17.0.dist-info/METADATA         │ python-pkg │        0        │    -    │
+└──────────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+launch-control:optimized (debian 13.6)
+======================================
+Total: 51 (HIGH: 48, CRITICAL: 3)
+
+┌─────────────────────────┬────────────────┬──────────┬──────────────┬─────────────────────────┬──────────────────┬──────────────────────────────────────────────────────────────┐
+│         Library         │ Vulnerability  │ Severity │    Status    │    Installed Version    │  Fixed Version   │                            Title                             │
+├─────────────────────────┼────────────────┼──────────┼──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ bsdutils                │ CVE-2026-53612 │ HIGH     │ fixed        │ 1:2.41-5                │ 2.41.5-0+deb13u1 │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ gzip                    │ CVE-2026-41992 │          │ affected     │ 1.13-1                  │                  │ GNU gzip contains a global buffer overflow vulnerability in  │
+│                         │                │          │              │                         │                  │ the LZH de...                                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-41992                   │
+├─────────────────────────┼────────────────┤          │              ├─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ libacl1                 │ CVE-2026-54369 │          │              │ 2.3.2-2+b1              │                  │ acl: Symlink traversal privilege escalation via libacl       │
+│                         │                │          │              │                         │                  │ functions                                                    │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-54369                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ libblkid1               │ CVE-2026-53612 │          │ fixed        │ 2.41-5                  │ 2.41.5-0+deb13u1 │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│ liblastlog2-2           │ CVE-2026-53612 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│ libmount1               │ CVE-2026-53612 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│ libsmartcols1           │ CVE-2026-53612 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ libssl3t64              │ CVE-2026-14456 │          │ fix_deferred │ 3.5.6-1~deb13u2         │                  │ openssl: OpenSSL: Denial of Service via unbounded memory     │
+│                         │                │          │              │                         │                  │ growth in QUIC server...                                     │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-14456                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ libtinfo6               │ CVE-2025-69720 │          │ affected     │ 6.5+20250216-2          │                  │ ncurses: ncurses: Buffer overflow vulnerability may lead to  │
+│                         │                │          │              │                         │                  │ arbitrary code execution.                                    │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2025-69720                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ libuuid1                │ CVE-2026-53612 │          │ fixed        │ 2.41-5                  │ 2.41.5-0+deb13u1 │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          │              ├─────────────────────────┤                  ├──────────────────────────────────────────────────────────────┤
+│ login                   │ CVE-2026-53612 │          │              │ 1:4.16.0-2+really2.41-5 │                  │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          │              ├─────────────────────────┤                  ├──────────────────────────────────────────────────────────────┤
+│ mount                   │ CVE-2026-53612 │          │              │ 2.41-5                  │                  │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ ncurses-base            │ CVE-2025-69720 │          │ affected     │ 6.5+20250216-2          │                  │ ncurses: ncurses: Buffer overflow vulnerability may lead to  │
+│                         │                │          │              │                         │                  │ arbitrary code execution.                                    │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2025-69720                   │
+├─────────────────────────┤                │          │              │                         ├──────────────────┤                                                              │
+│ ncurses-bin             │                │          │              │                         │                  │                                                              │
+│                         │                │          │              │                         │                  │                                                              │
+│                         │                │          │              │                         │                  │                                                              │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ openssl-provider-legacy │ CVE-2026-14456 │          │ fix_deferred │ 3.5.6-1~deb13u2         │                  │ openssl: OpenSSL: Denial of Service via unbounded memory     │
+│                         │                │          │              │                         │                  │ growth in QUIC server...                                     │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-14456                   │
+├─────────────────────────┼────────────────┼──────────┼──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ perl-base               │ CVE-2026-13221 │ CRITICAL │ affected     │ 5.40.1-6                │                  │ perl: Perl: Incorrect regular expression processing via      │
+│                         │                │          │              │                         │                  │ large regular expressions                                    │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-13221                   │
+│                         ├────────────────┤          ├──────────────┤                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-42496 │          │ fix_deferred │                         │                  │ perl-archive-tar: perl-archive-tar: Path traversal via       │
+│                         │                │          │              │                         │                  │ crafted symlinks allows arbitrary file access                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-42496                   │
+│                         ├────────────────┤          ├──────────────┤                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-8376  │          │ affected     │                         │                  │ perl: Perl: Heap buffer overflow when compiling regular      │
+│                         │                │          │              │                         │                  │ expressions on 32-bit builds...                              │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-8376                    │
+│                         ├────────────────┼──────────┼──────────────┤                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-42497 │ HIGH     │ fix_deferred │                         │                  │ perl-Archive-Tar: perl-Archive-Tar: Arbitrary file           │
+│                         │                │          │              │                         │                  │ modification via crafted hardlinks during archive extraction │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-42497                   │
+│                         ├────────────────┤          ├──────────────┤                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-48962 │          │ affected     │                         │                  │ perl-IO-Compress: perl-IO-Compress: Arbitrary code execution │
+│                         │                │          │              │                         │                  │ via attacker-controlled output glob                          │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-48962                   │
+│                         ├────────────────┤          │              │                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-57432 │          │              │                         │                  │ perl: Perl: Information disclosure via integer overflow in   │
+│                         │                │          │              │                         │                  │ pack/unpack operations                                       │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-57432                   │
+│                         ├────────────────┤          │              │                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-57433 │          │              │                         │                  │ Storable: Storable: Denial of Service via signed integer     │
+│                         │                │          │              │                         │                  │ overflow in deserialization                                  │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-57433                   │
+│                         ├────────────────┤          ├──────────────┤                         ├──────────────────┼──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-9538  │          │ fix_deferred │                         │                  │ perl-Archive-Tar: perl-Archive-Tar: Denial of Service via    │
+│                         │                │          │              │                         │                  │ crafted tar header with large entry...                       │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-9538                    │
+├─────────────────────────┼────────────────┤          ├──────────────┼─────────────────────────┼──────────────────┼──────────────────────────────────────────────────────────────┤
+│ util-linux              │ CVE-2026-53612 │          │ fixed        │ 2.41-5                  │ 2.41.5-0+deb13u1 │ util-linux: util-linux: TOCTOU in the mount program when     │
+│                         │                │          │              │                         │                  │ applying post-mount ownership/mode changes...                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53612                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53613 │          │              │                         │                  │ util-linux: util-linux: TOCTOU in the mount program via      │
+│                         │                │          │              │                         │                  │ ancestor directory swap on...                                │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53613                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53614 │          │              │                         │                  │ util-linux: util-linux: SUID mount(8) allows nosuid/noexec   │
+│                         │                │          │              │                         │                  │ bypass via LIBMOUNT_FORCE_MOUNT2                             │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53614                   │
+│                         ├────────────────┤          │              │                         │                  ├──────────────────────────────────────────────────────────────┤
+│                         │ CVE-2026-53615 │          │              │                         │                  │ [Integer Overflow or Wraparound in                           │
+│                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
+│                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
+└─────────────────────────┴────────────────┴──────────┴──────────────┴─────────────────────────┴──────────────────┴──────────────────────────────────────────────────────────────┘

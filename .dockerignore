@@ -2,28 +2,51 @@
 .git
 .gitignore
 .github
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# Секреты и окружения
+.env
+.env.*
+*.env
 
 # Локальные окружения и кэши Python
 .venv
-.pytest_cache
+venv
 **/__pycache__
-**/*.py[cod]
+**/*.pyc
+**/*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+dist
+build
+*.egg-info
 .python-version
 
-# Конфиги агентов и документация
+# Кэши пакетных менеджеров
+.cache
+
+# Конфиги агентов и IDE
 .clinerules
+.opencode
+.idea
+.vscode
+*.swp
+
+# Документация и артефакты лабы
 AGENTS.md
 opencode.json
 README.md
 docs
-
-# Артефакты лабы и инструменты разработки
 artifacts
+bench-results.md
+
+# Инструменты разработки и тесты (приложение их не импортирует:
+# grep по app/ показывает только fastapi, pydantic и app.*)
 scripts
 tests
 tools
-bench-results.md
-
-# Сам Dockerfile в контекст сборки не нужен
-Dockerfile*
-.dockerignore

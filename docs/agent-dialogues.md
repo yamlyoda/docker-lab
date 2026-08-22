@@ -121,3 +121,118 @@ bench.sh/score.sh используют одну и ту же `inspect`, поэт
    `artifacts/` и пр.
 
 **Решение человека:** ожидает утверждения плана.
+
+---
+
+## Запись 3 — 2026-08-22, шаг 2: первая реализация оптимизации и отбор замерами
+
+**Промпт человека:** «ок» — утверждение плана (smoke.sh, multi-stage Dockerfile,
+слои под кэш, non-root/HEALTHCHECK/CMD, pandas→analytics, .dockerignore).
+
+**Ключевые события (все — с замером до принятия):**
+
+1. `scripts/smoke.sh` создан: 9 HTTP-проверок, зеркалит tests/test_api.py;
+   негативный тест на несуществующем образе даёт exit=1.
+2. pyproject.toml: pandas/numpy/pandas-stubs → optional-группа `analytics`;
+   `uv lock` (41 пакет), pytest 17 passed.
+3. Первый optimized (runtime = python:slim): 50 MB, score 9/9, smoke зелёный,
+   НО dive efficiency **97.80 % < baseline 99.09 %** → критерий провален,
+   остановка по правилу №9.
+4. Эксперимент bookworm: 97.92 % — та же болезнь → отклонён.
+5. Решение: runtime на чистом `debian:trixie-slim` + перенос `/usr/local`
+   из builder одним слоем. Первая попытка упала на отсутствии libffi
+   (`ImportError: libffi.so.8`) — показана полная ошибка, добавлен apt-слой
+   с ca-certificates+libffi8: dive вырос до ~98.95 % — всё ещё ниже baseline.
+6. Убран apt из рантайма вовсе (проверено: приложению libffi не нужен,
+   smoke+тесты зелёные): **dive 99.9979 %**, wasted 6.9 KB.
+7. trivy нашёл в образе uv (~24 MB) → удалён в том же слое, где ставился
+   (иначе whiteout стал бы мусором для dive). Размер 48.3 MB.
+8. Эксперимент «apt-upgrade util-linux» ради −36 CVE: dive упал до
+   **94.28 %** (20 MB перезаписей) → отвергнут замером, остался в комментарии
+   Dockerfile как задокументированный трейд-офф; фиксы придут со следующим
+   base-образом.
+
+**Итог шага:** 48.3 MB, 6 слоёв, dive 99.9979 %, score 9/9, hadolint 0,
+trivy CRITICAL 3 / HIGH 48 (baseline: 56 / 515), smoke+pytest зелёные.
+
+**Решение человека:** принято (наблюдение за ходом работы).
+
+---
+
+## Запись 4 — 2026-08-22, шаг 3: вынос в Dockerfile.optimized, .dockerignore, обоснование базы
+
+**Промпт человека:** развёрнутое ТЗ — создать отдельный `Dockerfile.optimized`
+и `.dockerignore` (корневой Dockerfile остаётся baseline), провести анализ
+приложения (8 вопросов), зафиксировать digest через imagetools inspect,
+обосновать slim/alpine/distroless в docs/base-image-decision.md, показать
+влияние ignore на контекст, прогнать батарею проверок.
+
+**Обнаружено:** история репозитория переписана человеком между шагами — работа
+заккоммичена как `392ce24 "First optimization"`; оригинальный baseline-Dockerfile
+сохранён в init-коммите `bcaca71`. Восстановлен командой
+`git checkout bcaca71 -- Dockerfile`.
+
+**Анализ приложения (ответы на 8 пунктов ТЗ):**
+
+1. Язык/рантайм: Python 3.12 (requires-python >=3.12,<3.13).
+2. Запуск: `python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT` (8000).
+3. Runtime-зависимости: fastapi, pydantic, uvicorn[standard] (+транзитивные);
+   данные читаются из `app/data/launches.json` относительно модуля.
+4. Только для сборки: ничего (колёса manylinux существуют); dev-группа
+   (pytest/httpx/ruff/mypy) и analytics (pandas/numpy) рантайму не нужны.
+5. Компилируемые модули: pydantic-core (Rust), uvloop/httptools/watchfiles —
+   ставятся готовыми колёсами, компилятор не требуется.
+6. Системные библиотеки: ssl/zlib/expat есть в debian-slim; **libffi не нужен**
+   (доказано smoke+pytest без него); ca-certificates не нужны (нет исходящих
+   TLS).
+7. Нужные файлы: только `app/` и установленный venv (+интерпретатор).
+8. Исключаемые: всё остальное (.git, .venv, кэши, tests/tools/scripts/docs,
+   артефакты, IDE-файлы) — приложение их не импортирует (grep подтверждён).
+
+**Выполнено:**
+
+- восстановлен baseline `Dockerfile`; создан `Dockerfile.optimized`
+  (multi-stage, дайджесты обоих базовых образов, non-root uid 10001,
+  HEALTHCHECK python-urllib, exec-CMD c `exec sh -c` для сохранения
+  настраиваемости PORT и корректной доставки сигналов);
+- `.dockerignore` расширен по списку ТЗ; найдена и исправлена регрессия:
+  паттерны `__pycache__`/`*.pyc` без префикса `**/` перестали отсекать
+  вложенные каталоги — обнаружено пробным образом (alpine+COPY), исправлено
+  на `**/__pycache__`, `**/*.pyc`, `**/*.pyo`;
+- digest зафиксирован: `docker buildx imagetools inspect python:3.12-slim |
+  tee artifacts/base-image-digest.txt`, манифест-лист совпадает с FROM;
+- написан docs/base-image-decision.md (slim выбран по замерам; alpine и
+  distroless отклонены с явной пометкой «аналитически, без замера»; чистый
+  python-slim runtime отклонён ЗАМЕРОМ 97.80/97.92 %);
+- эксперимент влияния ignore: контекст **182.33 MB / 5961 файлов → 116 KB /
+  8 файлов** (строка BuildKit: 182.33 MB → 325 B; малое число объяснено
+  дедупликацией блобов containerd, авторитетный размер — du пробного образа);
+  артефакты context-before/after-ignore.txt, context-size-comparison.txt.
+
+**Батарея финальной сборки (`docker build -f Dockerfile.optimized`):**
+
+| Проверка | Результат | Артефакт |
+| --- | --- | --- |
+| smoke.sh | все эндпоинты отвечают | вывод в журнале сессии |
+| `uv run --extra dev pytest -q` | 17 passed | — |
+| hadolint Dockerfile.optimized | пустой вывод | — |
+| hadolint Dockerfile (baseline) | 0 ошибок уровня error | artifacts/hadolint-baseline.txt |
+| trivy HIGH/CRITICAL | 51 находка (CRIT 3 / HIGH 48), Python: 0 | artifacts/trivy-optimized-first.txt |
+| score.sh (BASELINE_MB=615) | 9/9 | artifacts/score-optimized.txt |
+| dive | 99.9979 %, wasted 6.9 KB | artifacts/dive-optimized.txt |
+| bench.sh optimized -f Dockerfile.optimized | 48 MB / 6 слоёв / холодная 11.3 s / тёплая 0.675 s / user app / HEALTHCHECK есть | artifacts/bench-optimized.txt, bench-results.md |
+
+**Итоговая таблица «до/после»:**
+
+| Метрика | baseline | optimized | Δ |
+| --- | --- | --- | --- |
+| Размер | 615 MB | 48 MB | ×12.8 меньше |
+| Слоёв | 13 | 6 | −7 |
+| Холодная сборка | 97.1 s | 11.3 s | ×8.6 быстрее |
+| Тёплая пересборка | 46.3 s | 0.675 s | ×68 быстрее |
+| Пользователь | root | app (uid 10001) | non-root |
+| HEALTHCHECK | нет | есть | + |
+| dive efficiency | 99.09 % | 99.9979 % | +0.91 п.п. |
+| trivy CRITICAL/HIGH | 56/515 | 3/48 | −518 |
+
+**Решение человека:** ожидает утверждения.

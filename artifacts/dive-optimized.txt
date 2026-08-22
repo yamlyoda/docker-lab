@@ -1,4 +1,4 @@
-# dive launch-control:optimized (CI mode, финальная сборка) — 2026-08-22T16:41:30Z
+# dive launch-control:optimized (сборка из Dockerfile.optimized) — 2026-08-22T16:55:44Z
 
   Using default CI config
 [1mImage Source: [0mdocker://launch-control:optimized
