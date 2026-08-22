@@ -1,0 +1,29 @@
+# Git и служебное
+.git
+.gitignore
+.github
+
+# Локальные окружения и кэши Python
+.venv
+.pytest_cache
+**/__pycache__
+**/*.py[cod]
+.python-version
+
+# Конфиги агентов и документация
+.clinerules
+AGENTS.md
+opencode.json
+README.md
+docs
+
+# Артефакты лабы и инструменты разработки
+artifacts
+scripts
+tests
+tools
+bench-results.md
+
+# Сам Dockerfile в контекст сборки не нужен
+Dockerfile*
+.dockerignore

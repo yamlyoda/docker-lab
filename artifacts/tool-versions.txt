@@ -1,0 +1,9 @@
+# Версии инструментов — 2026-08-22T15:52:10Z
+
+docker     Docker version 29.6.1, build 8900f1d
+uv         uv 0.12.5 (210d1f678 2026-08-14 aarch64-apple-darwin)
+python3    Python 3.9.6
+hadolint   Haskell Dockerfile Linter 2.15.1
+trivy      Version: 0.74.0
+dive       dive 0.13.1
+jq         jq-1.7.1-apple

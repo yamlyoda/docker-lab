@@ -1,0 +1,25 @@
+# dive launch-control:optimized (CI mode, финальная сборка) — 2026-08-22T16:41:30Z
+
+  Using default CI config
+[1mImage Source: [0mdocker://launch-control:optimized
+[1mExtracting image from docker-engine...[0m (this can take a while for large images)
+[1mAnalyzing image...[0m
+  efficiency: 99.9979 %
+  wastedBytes: 6885 bytes (6.9 kB)
+  userWastedPercent: 0.0101 %
+[1mInefficient Files:[0m
+Count  Wasted Space  File Path
+    2        1.7 kB  /etc/passwd
+    2        1.7 kB  /etc/passwd-
+    2         973 B  /etc/shadow
+    2         881 B  /etc/group
+    2         868 B  /etc/group-
+    2         736 B  /etc/gshadow
+    2          17 B  /etc/subuid
+    2          17 B  /etc/subgid
+[1mResults:[0m
+  PASS: highestUserWastedPercent
+  [34mSKIP[0m: highestWastedBytes: rule disabled
+  PASS: lowestEfficiency
+[32mResult:PASS [Total:3] [Passed:2] [Failed:0] [Warn:0] [Skipped:1][0m
+

@@ -1,0 +1,15 @@
+
+[1mLaunch Control — табло launch-control:optimized[0m
+
+  [32m✓[0m Размер <= 25% baseline[2m  — 48 MB (лимит 153 MB)[0m
+  [32m✓[0m Работает не от root[2m  — app[0m
+  [32m✓[0m Есть HEALTHCHECK[2m[0m
+  [32m✓[0m Нет компилятора в runtime[2m[0m
+  [32m✓[0m Нет dev-инструментов[2m[0m
+  [32m✓[0m Тесты не едут в образ[2m[0m
+  [32m✓[0m Нет секретов в ENV[2m[0m
+  [32m✓[0m Есть .dockerignore[2m  — 20 правил[0m
+  [32m✓[0m hadolint без ошибок[2m[0m
+
+  [1mГотово: 9/9[0m
+

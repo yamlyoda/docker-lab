@@ -43,3 +43,4 @@ htmlcov/
 
 # uv
 uv.lock
+opencode.json
