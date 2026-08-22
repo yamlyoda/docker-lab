@@ -1,0 +1,40 @@
+# STEP 2 — step1 + slim-база
+#
+# Отличие от step1: только базовый образ. Полный python:3.12 (Debian full +
+# buildpack-deps, ~1.1 GB несжатых) заменён на официальный slim той же
+# мажорной версии, зафиксированный тегом патча и digest.
+# Всё остальное — как в baseline: COPY . . (уже под .dockerignore),
+# системные утилиты через apt, pip install ".[dev]", секрет, root, shell-CMD.
+#
+# Измеряет вклад только одного приёма: смена fat-базы на slim.
+# Сборка работает без компилятора в runtime, потому что все нативные
+# колёса (pydantic-core, pandas, numpy) доступны как manylinux wheels.
+
+ARG PYTHON_IMAGE=python:3.12.14-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a
+
+FROM ${PYTHON_IMAGE}
+
+LABEL maintainer="platform-team@example.com"
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y \
+      build-essential \
+      curl \
+      git \
+      vim \
+      procps \
+      net-tools
+
+RUN pip install --upgrade pip
+RUN pip install ".[dev]"
+
+ENV PORT=8000
+ENV APP_ENV=production
+ENV ADMIN_TOKEN=launch-control-dev-token
+
+EXPOSE 8000
+
+CMD python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT

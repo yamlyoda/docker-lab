@@ -1,0 +1,55 @@
+# STEP 4 — step3 + только рантайм-зависимости (без dev/лишних пакетов и кэшей)
+#
+# Отличие от step3:
+#   1) ставятся ТОЛЬКО рантайм-зависимости: uv export --frozen --no-dev
+#      --no-emit-project из uv.lock (без pytest/httpx/ruff/mypy/pandas-stubs
+#      и без pandas/numpy, переехавших в optional-группу analytics);
+#   2) зависимости живут в изолированном /opt/venv, инструменты сборки
+#      (uv/pip/setuptools) удаляются в том же слое, где ставились;
+#   3) никаких кэшей pip в слоях (--no-cache-dir / --no-cache).
+#
+# Намеренно НЕ включены (их вклад покажет финальный Dockerfile.optimized):
+# non-root пользователь, HEALTHCHECK, exec-CMD и перенос интерпретатора на
+# чистую debian-slim базу. Секрет в ENV тоже оставлен — его удаление не влияет
+# на размер; это атрибут безопасности финального варианта.
+#
+# Измеряет вклад приёма «минус dev- и лишние зависимости».
+
+ARG PYTHON_IMAGE=python:3.12.14-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a
+
+FROM ${PYTHON_IMAGE} AS builder
+
+ARG UV_VERSION=0.12.5
+ENV PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /build
+
+COPY pyproject.toml uv.lock ./
+
+RUN pip install --no-cache-dir "uv==${UV_VERSION}" \
+ && uv export --frozen --no-dev --no-emit-project -o requirements.txt \
+ && uv venv /opt/venv \
+ && VIRTUAL_ENV=/opt/venv uv pip install --no-cache -r requirements.txt \
+ && rm requirements.txt \
+ && pip uninstall --yes uv \
+ && { pip uninstall --yes pip setuptools wheel 2>/dev/null || true; }
+
+FROM ${PYTHON_IMAGE} AS runtime
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH" \
+    PORT=8000 \
+    APP_ENV=production \
+    ADMIN_TOKEN=launch-control-dev-token
+
+WORKDIR /app
+
+COPY --from=builder /opt/venv /opt/venv
+
+COPY app ./app
+
+EXPOSE 8000
+
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,39 @@
+# STEP 1 — baseline + .dockerignore
+#
+# Единственное отличие от корневого (baseline) Dockerfile:
+# 1) строка `RUN python -m pytest -q` удалена — .dockerignore исключает tests/
+#    из контекста, поэтому тесты внутри сборки запустить невозможно
+#    (антипаттерн «тесты едут в образ» и «тесты гоняются при сборке»
+#    устраняются этим приёмом совместно);
+# 2) всё остальное идентично baseline: плавающий FROM, COPY . .,
+#    системные утилиты, dev-зависимости, секрет в ENV, shell-CMD, root.
+#
+# Измеряет вклад только одного приёма: отсечение контекста (.git, .venv,
+# tests/, docs/, артефакты, кэши) инструкцией COPY . .
+
+FROM python:3.12
+
+LABEL maintainer="platform-team@example.com"
+
+WORKDIR /app
+
+COPY . .
+
+RUN apt-get update && apt-get install -y \
+      build-essential \
+      curl \
+      git \
+      vim \
+      procps \
+      net-tools
+
+RUN pip install --upgrade pip
+RUN pip install ".[dev]"
+
+ENV PORT=8000
+ENV APP_ENV=production
+ENV ADMIN_TOKEN=launch-control-dev-token
+
+EXPOSE 8000
+
+CMD python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT

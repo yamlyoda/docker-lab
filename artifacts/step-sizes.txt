@@ -1,0 +1,9 @@
+# Размеры промежуточных вариантов — 2026-08-22T17:23:12Z
+# Метрика: docker image inspect .Size (сжатые блобы, containerd store)
+
+launch-control:baseline                645278055 bytes =  615.4 MB, слоёв: 13
+launch-control:step1-dockerignore      526849870 bytes =  502.4 MB, слоёв: 12
+launch-control:step2-slim              304598035 bytes =  290.5 MB, слоёв: 9
+launch-control:step3-multistage         90855489 bytes =   86.6 MB, слоёв: 8
+launch-control:step4-nodev              52880406 bytes =   50.4 MB, слоёв: 7
+launch-control:optimized                50656473 bytes =   48.3 MB, слоёв: 6

@@ -1,0 +1,44 @@
+# STEP 3 — step2 + multi-stage (сборочные инструменты не попадают в runtime)
+#
+# Отличие от step2: сборка разделена на стадии.
+#   builder: ставит ВСЕ зависимости (включая dev-группу — её чистка будет
+#            отдельным шагом 4) в системный site-packages;
+#   runtime: тот же slim-базовый образ, но БЕЗ apt-инструментов
+#            (build-essential/curl/git/vim/procps/net-tools) — забирает только
+#            site-packages и консольные скрипты из builder.
+# Dev-зависимости Python здесь ещё едут в runtime намеренно: этот шаг измеряет
+# только эффект удаления системных сборочных инструментов.
+# Кэш pip уже не попадает в слои (--no-cache-dir).
+
+ARG PYTHON_IMAGE=python:3.12.14-slim@sha256:2c941e860699f878900b0edc2403613c234d4b32eda3cc9fa7036991a2a63c4a
+
+FROM ${PYTHON_IMAGE} AS builder
+
+ENV PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /build
+
+COPY pyproject.toml uv.lock ./
+COPY app ./app
+
+RUN pip install --no-cache-dir ".[dev]"
+
+FROM ${PYTHON_IMAGE} AS runtime
+
+LABEL maintainer="platform-team@example.com"
+
+ENV PORT=8000 \
+    APP_ENV=production \
+    ADMIN_TOKEN=launch-control-dev-token
+
+WORKDIR /app
+
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
+
+COPY app ./app
+
+EXPOSE 8000
+
+CMD python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
