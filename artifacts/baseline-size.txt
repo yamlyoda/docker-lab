@@ -1,0 +1,5 @@
+# Размер baseline-образа — 2026-08-22T17:44:38Z
+$ docker image inspect launch-control:baseline --format '{{.Size}} {{len .RootFS.Layers}}'
+645278055 13
+# = 645278055 bytes ≈ 615 MB, 13 слоёв
+# Метрика .Size в containerd store (docker 29.6.1) — сжатый размер слоёв.
