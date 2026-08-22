@@ -1,0 +1,79 @@
+{
+  "launches": [
+    {
+      "id": "LC-101",
+      "name": "Pale Blue Dot",
+      "vehicle": "Falcon-9",
+      "pad": "LC-39A",
+      "window_utc": "2026-08-02T04:15:00Z",
+      "status": "scheduled",
+      "payload_kg": 9200,
+      "checks": {
+        "weather": true,
+        "range_safety": true,
+        "fuel": true,
+        "telemetry": true
+      }
+    },
+    {
+      "id": "LC-102",
+      "name": "Cold Start",
+      "vehicle": "Electron",
+      "pad": "LC-1B",
+      "window_utc": "2026-08-02T09:40:00Z",
+      "status": "scheduled",
+      "payload_kg": 300,
+      "checks": {
+        "weather": false,
+        "range_safety": true,
+        "fuel": true,
+        "telemetry": true
+      }
+    },
+    {
+      "id": "LC-103",
+      "name": "Heavy Lifter",
+      "vehicle": "Ariane-6",
+      "pad": "ELA-4",
+      "window_utc": "2026-08-03T18:05:00Z",
+      "status": "scheduled",
+      "payload_kg": 21500,
+      "checks": {
+        "weather": true,
+        "range_safety": true,
+        "fuel": true,
+        "telemetry": true
+      }
+    },
+    {
+      "id": "LC-104",
+      "name": "Night Shift",
+      "vehicle": "Soyuz-2",
+      "pad": "31/6",
+      "window_utc": "2026-08-04T23:12:00Z",
+      "status": "hold",
+      "payload_kg": 7400,
+      "checks": {
+        "weather": true,
+        "range_safety": false,
+        "fuel": true,
+        "telemetry": false
+      }
+    },
+    {
+      "id": "LC-105",
+      "name": "Second Stage Blues",
+      "vehicle": "Falcon-9",
+      "pad": "SLC-40",
+      "window_utc": "2026-07-29T11:00:00Z",
+      "status": "launched",
+      "payload_kg": 12800,
+      "checks": {
+        "weather": true,
+        "range_safety": true,
+        "fuel": true,
+        "telemetry": true
+      }
+    }
+  ]
+}
