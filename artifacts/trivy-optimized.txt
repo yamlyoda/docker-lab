@@ -1,16 +1,13 @@
-# trivy launch-control:optimized (финальный) — 2026-08-22T16:33:00Z
-
-$ trivy image --severity HIGH,CRITICAL launch-control:optimized
-
-2026-08-22T19:33:00+03:00	INFO	[vuln] Vulnerability scanning is enabled
-2026-08-22T19:33:00+03:00	INFO	[secret] Secret scanning is enabled
-2026-08-22T19:33:00+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
-2026-08-22T19:33:00+03:00	INFO	[secret] Please see https://trivy.dev/docs/v0.74/guide/scanner/secret#recommendation for faster secret detection
-2026-08-22T19:33:00+03:00	INFO	Detected OS	family="debian" version="13.6"
-2026-08-22T19:33:00+03:00	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=78
-2026-08-22T19:33:00+03:00	INFO	Number of language-specific files	num=1
-2026-08-22T19:33:00+03:00	INFO	[python-pkg] Detecting vulnerabilities...
-2026-08-22T19:33:00+03:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.
+2026-08-22T20:31:05+03:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-08-22T20:31:05+03:00	INFO	[secret] Secret scanning is enabled
+2026-08-22T20:31:05+03:00	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-08-22T20:31:05+03:00	INFO	[secret] Please see https://trivy.dev/docs/v0.74/guide/scanner/secret#recommendation for faster secret detection
+2026-08-22T20:31:06+03:00	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-08-22T20:31:06+03:00	INFO	Detected OS	family="debian" version="13.6"
+2026-08-22T20:31:06+03:00	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=78
+2026-08-22T20:31:06+03:00	INFO	Number of language-specific files	num=1
+2026-08-22T20:31:06+03:00	INFO	[python-pkg] Detecting vulnerabilities...
+2026-08-22T20:31:06+03:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.74/guide/scanner/vulnerability#severity-selection for details.
 
 Report Summary
 
@@ -274,14 +271,3 @@ Total: 51 (HIGH: 48, CRITICAL: 3)
 │                         │                │          │              │                         │                  │ libblkid/src/partitions/dos.c]                               │
 │                         │                │          │              │                         │                  │ https://avd.aquasec.com/nvd/cve-2026-53615                   │
 └─────────────────────────┴────────────────┴──────────┴──────────────┴─────────────────────────┴──────────────────┴──────────────────────────────────────────────────────────────┘
---- summary по всем severity (json API trivy) ---
-
-launch-control:optimized (debian 13.6): 185
-  CRITICAL: 3
-  HIGH: 48
-  LOW: 65
-  MEDIUM: 64
-  UNKNOWN: 5
-Python: 0
-
-ИТОГО по образу: CRITICAL=3, HIGH=48

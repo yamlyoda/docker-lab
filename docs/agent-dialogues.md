@@ -283,3 +283,32 @@ step2-slim, step3-multistage, step4-nodev), прогнать через bench.sh
 записи в `bench-results.md` (дописаны bench.sh автоматически, руками не правились).
 
 **Решение человека:** ожидает утверждения.
+
+---
+
+## Запись 6 — 2026-08-22, шаг 5: финальные измерения
+
+**Промпт человека:** выполнить финальные измерения launch-control:optimized:
+основной `Dockerfile` = оптимизированный (baseline сохранить как
+`Dockerfile.baseline`), пересборка, bench, score 9/9, hadolint/trivy/dive
+артефакты, ручной тест тёплой пересборки с проверкой CACHED, smoke, pytest.
+
+**Выполнено и измерено:**
+- `cp Dockerfile → Dockerfile.baseline`, `cp Dockerfile.optimized → Dockerfile`;
+- пересборка и bench.sh optimized: **48 MB / 6 слоёв / холодная 9.3 s /
+  тёплая 0.613 s / app / HEALTHCHECK есть**;
+- baseline = 645 278 055 B = 615 MB → score.sh: **9/9**
+  (размер 48 MB при лимите 153 MB);
+- hadolint Dockerfile: пустой вывод;
+- trivy HIGH/CRITICAL: Total 51 (HIGH 48, CRITICAL 3) — объяснение остатка в
+  README (util-linux ×36 — фикс опубликован, придёт с новым digest базы;
+  perl-base ×8 — фиксов нет; ssl ×2 fix_deferred; ncurses/gzip/libacl ×5);
+- dive CI: efficiency **99.9979 %**, wasted 6.9 KB, PASS (+ JSON-экспорт
+  artifacts/dive-optimized.json, 1.4 MB); baseline был 99.0851 %;
+- ручной тёплый тест: добавлен комментарий в app/main.py (с бэкапом),
+  сборка — все слои зависимостей CACHED (7 CACHED), ни одного
+  installing/downloading, пересобрался только COPY app, итого **0.786 s**;
+  правка откачена, git status по app/ чист;
+- smoke пройден, pytest 17 passed.
+
+**Решение человека:** ожидает утверждения.

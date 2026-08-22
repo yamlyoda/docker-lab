@@ -1,4 +1,4 @@
-# hadolint Dockerfile (optimized финальный) — 2026-08-22T16:41:30Z
+# hadolint Dockerfile (финальный) — 2026-08-22T17:30:58Z
 
 $ hadolint Dockerfile
 (пустой вывод выше = 0 ошибок/warning/info)
